@@ -13,8 +13,13 @@ jobs:
           repository: appium/WebDriverAgent
           submodules: recursive
 
-      - name: Préparer le projet
-        run: ./Scripts/bootstrap.sh
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Préparer le projet (npm, remplace l'ancien Scripts/bootstrap.sh)
+        run: npm install
 
       - name: Compiler (sans signature, pour la re-signer nous-mêmes ensuite)
         run: |
